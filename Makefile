@@ -1,4 +1,4 @@
-VERSION := v1.6.0
+VERSION := v1.5.5
 
 prefix := /usr
 exec_prefix := $(prefix)
