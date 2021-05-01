@@ -3,7 +3,6 @@ VERSION := v1.5.5
 prefix := /usr
 exec_prefix := $(prefix)
 bindir := $(exec_prefix)/bin
-libexecdir := $(exec_prefix)/libexec
 datarootdir := $(prefix)/share
 man1dir := $(datarootdir)/man/man1
 sysconfdir := $(prefix)/etc
