@@ -5,7 +5,8 @@ exec_prefix := $(prefix)
 bindir := $(exec_prefix)/bin
 datarootdir := $(prefix)/share
 man1dir := $(datarootdir)/man/man1
-sysconfdir := $(prefix)/etc
+
+bash_completion_dir := $(datarootdir)/bash-completion/completions
 
 all: package
 
@@ -45,7 +46,7 @@ deb rpm: clean package-build
 		-p /pkg-target \
 		target/bin/git-team=$(bindir)/git-team \
 		target/bin/prepare-commit-msg-git-team=$(bindir)/prepare-commit-msg-git-team \
-		bash_completion/git-team.bash=$(sysconfdir)/bash_completion.d/git-team \
+		bash_completion/git-team.bash=$(bash_completion_dir)/git-team \
 		target/man/git-team.1.gz=$(man1dir)/git-team.1.gz
 
 show-checksums: package-build
