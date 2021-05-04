@@ -21,13 +21,13 @@ package-build: export-signing-key
 		--build-arg GID=$(shell id -g) \
 		--build-arg USERNAME=$(USER) \
 		--build-arg VERSION=$(VERSION) \
-		-t git-team-pkg:v$(VERSION) \
+		-t git-team-pkg:$(VERSION) \
 		.
 
 deb rpm: clean package-build
 	mkdir -p target/$@
 	chown -R $(shell id -u):$(shell id -g) target/$@
-	docker run --rm -h git-team-pkg -v `pwd`/target/$@:/pkg-target git-team-pkg:v$(VERSION) fpm \
+	docker run --rm -h git-team-pkg -v `pwd`/target/$@:/pkg-target git-team-pkg:$(VERSION) fpm \
 		-f \
 		-s dir \
 		-t $@ \
