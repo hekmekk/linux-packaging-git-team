@@ -33,10 +33,8 @@ RUN cp /src/go.mod .
 RUN cp -r /src/cmd ./cmd
 RUN cp -r /src/src ./src
 RUN cp -r /src/bash_completion ./bash_completion
-RUN cp -r /src/git-hooks ./git-hooks
 
 RUN chmod +x Makefile
-RUN chmod +x git-hooks/*
 
 RUN chown -R $UID:$GID .
 
