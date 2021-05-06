@@ -1,4 +1,4 @@
-VERSION := v1.5.5
+VERSION := 1.5.5
 
 prefix := /usr
 exec_prefix := $(prefix)
@@ -21,14 +21,14 @@ package-build: export-signing-key
 		--build-arg UID=$(shell id -u) \
 		--build-arg GID=$(shell id -g) \
 		--build-arg USERNAME=$(USER) \
-		--build-arg VERSION=$(VERSION) \
-		-t git-team-pkg:$(VERSION) \
+		--build-arg VERSION=v$(VERSION) \
+		-t git-team-pkg:v$(VERSION) \
 		.
 
 deb rpm: clean package-build
 	mkdir -p target/$@
 	chown -R $(shell id -u):$(shell id -g) target/$@
-	docker run --rm -h git-team-pkg -v `pwd`/target/$@:/pkg-target git-team-pkg:$(VERSION) fpm \
+	docker run --rm -h git-team-pkg -v `pwd`/target/$@:/pkg-target git-team-pkg:v$(VERSION) fpm \
 		-f \
 		-s dir \
 		-t $@ \
