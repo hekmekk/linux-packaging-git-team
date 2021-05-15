@@ -30,6 +30,7 @@ WORKDIR /build
 
 RUN cp /src/Makefile .
 RUN cp /src/go.mod .
+RUN cp /src/go.sum .
 RUN cp -r /src/cmd ./cmd
 RUN cp -r /src/src ./src
 RUN cp -r /src/bash_completion ./bash_completion
