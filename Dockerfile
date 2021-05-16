@@ -33,7 +33,6 @@ RUN cp /src/go.mod .
 RUN cp /src/go.sum .
 RUN cp /src/main.go .
 RUN cp -r /src/src ./src
-RUN cp -r /src/bash_completion ./bash_completion
 
 RUN chmod +x Makefile
 

@@ -1,4 +1,4 @@
-VERSION := 1.5.6-rc1
+VERSION := 1.6.0
 
 prefix := /usr
 exec_prefix := $(prefix)
@@ -45,7 +45,7 @@ deb rpm: clean package-build
 		--rpm-sign \
 		-p /pkg-target \
 		target/bin/git-team=$(bindir)/git-team \
-		bash_completion/git-team.bash=$(bash_completion_dir)/git-team \
+		target/completion/bash/git-team.bash=$(bash_completion_dir)/git-team \
 		target/man/git-team.1.gz=$(man1dir)/git-team.1.gz
 
 show-checksums: package-build
