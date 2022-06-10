@@ -10,13 +10,13 @@ bash_completion_dir := $(datarootdir)/bash-completion/completions
 
 all: package
 
-export-signing-key: clean
+signing-key.asc:
 ifndef GPG_SIGNING_KEY_ID
 	$(error GPG_SIGNING_KEY_ID is not set)
 endif
 	gpg --armor --export-secret-keys $(GPG_SIGNING_KEY_ID) > `pwd`/signing-key.asc
 
-package-build: export-signing-key
+package-build: signing-key.asc
 	docker build \
 		--build-arg UID=$(shell id -u) \
 		--build-arg GID=$(shell id -g) \
@@ -54,6 +54,5 @@ show-checksums: package-build
 package: rpm deb show-checksums
 
 clean:
-	rm -f `pwd`/signing-key.asc
 	rm -rf `pwd`/target
 
