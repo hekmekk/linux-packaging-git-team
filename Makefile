@@ -17,11 +17,15 @@ endif
 	gpg --armor --export-secret-keys $(GPG_SIGNING_KEY_ID) > `pwd`/signing-key.asc
 
 package-build: signing-key.asc
+ifndef GPG_SIGNING_KEY_ID
+	$(error GPG_SIGNING_KEY_ID is not set)
+endif
 	docker build \
 		--build-arg UID=$(shell id -u) \
 		--build-arg GID=$(shell id -g) \
 		--build-arg USERNAME=$(USER) \
 		--build-arg VERSION=v$(VERSION) \
+		--build-arg GPG_SIGNING_KEY_ID=$(GPG_SIGNING_KEY_ID) \
 		-t git-team-pkg:v$(VERSION) \
 		.
 

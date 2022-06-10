@@ -5,6 +5,7 @@ LABEL maintainer Rea Sand <hekmek@posteo.de>
 ARG USERNAME=git-team-pkg
 ARG UID=1000
 ARG GID=1000
+ARG GPG_SIGNING_KEY_ID
 
 RUN groupadd -g $GID $USERNAME
 RUN useradd -m -u $UID -g $GID -s /bin/bash $USERNAME
@@ -48,7 +49,7 @@ RUN gpg --import --batch --no-tty /signing-key.asc
 
 RUN echo -e "%_signature gpg\n \
 %_gpg_path /home/${USERNAME}/.gnupg\n \
-%_gpg_name A25BDCDD58EBF2C0\n \
+%_gpg_name ${GPG_SIGNING_KEY_ID}\n \
 %_gpgbin /usr/bin/gpg" | tee /home/${USERNAME}/.rpmmacros
 
 ENV GOPATH=/go
