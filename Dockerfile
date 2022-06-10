@@ -44,7 +44,7 @@ RUN mkdir -p /pkg-target && chown -R $UID:$GID /pkg-target
 USER $USERNAME
 
 COPY signing-key.asc /signing-key.asc
-RUN gpg --import /signing-key.asc
+RUN gpg --import --batch --no-tty /signing-key.asc
 
 RUN echo -e "%_signature gpg\n \
 %_gpg_path /home/${USERNAME}/.gnupg\n \
