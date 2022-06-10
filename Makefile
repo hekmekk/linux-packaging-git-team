@@ -33,6 +33,7 @@ deb rpm: clean package-build
 	mkdir -p target/$@
 	chown -R $(shell id -u):$(shell id -g) target/$@
 	docker run --rm -h git-team-pkg -v `pwd`/target/$@:/pkg-target git-team-pkg:v$(VERSION) fpm \
+		--debug \
 		-f \
 		-s dir \
 		-t $@ \
